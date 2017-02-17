@@ -1,0 +1,24 @@
+<div ng-controller="CDController as ctrl">
+    <h2>Available CDs</h2>
+    <div class="form-group">
+        <label cdfilter="usr">Filter:</label>
+        <input type="text" ng-model="cdFilter.Title" class="form-control" id="cdfilter">
+    </div>
+    <br/><br/>
+    <table class="table table-striped">
+        <tr>
+            <th>Author</th>
+            <th ng-click="ctrl.doSort()">Title</th>
+            <th>Genre</th>
+            <th>Published</th>
+        </tr>
+        <tr ng-repeat="cd in ctrl.cds | filter:cdFilter | orderBy:ctrl.sortBy:ctrl.reverse">
+            <td>{{cd.author | uppercase}}</td>
+            <td>{{cd.title | lowercase}}</td>
+            <td>{{cd.genre}}</td>
+            <td>{{cd.yearPublished}}</td>
+        </tr>
+    </table>
+
+    <span>Total CDs: {{ctrl.cds.length}}</span>
+</div>
